@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (usuarioJSON) {
         //se o usuario estiver logado ele exibe a mensagem de boas vindas
+        //converte os dados de usuario de JSON para um objeto Javascript que podemos usar
         const usuario = JSON.parse(usuarioJSON);
+        //exibe a mensagem de boas vindas, mostrando o nome do usuario
         const mensagemElement = document.getElementById("mensagem");
         mensagemElement.textContent = "Bem-vindo, " + usuario.name;
     } else {
