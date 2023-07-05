@@ -24,7 +24,7 @@ const usuariosJSON = JSON.stringify(usuarios);
 /* JSON.parse()*/
 const listaUsuarios = JSON.parse(usuariosJSON);
 
-let form = document.querySelector("form");
+let form = document.querySelector("#login-form");
 let botaoLogar = document.querySelector("#form-botao");
 
 form.addEventListener("submit", (event) => {
@@ -34,19 +34,23 @@ form.addEventListener("submit", (event) => {
   let email = document.querySelector("#email").value;
   let senha = document.querySelector("#senha").value;
 
-  listaUsuarios.forEach(usuario => {
-    if(usuario.email.toUpperCase() === email.trim().toUpperCase() &&
+  let usuarioEncontrado = listaUsuarios.find(usuario =>
+    usuario.email.toUpperCase() === email.trim().toUpperCase() &&
     usuario.senha.toUpperCase() === senha.trim().toUpperCase()
-    ){
+  ); 
+    if (usuarioEncontrado) {
+      const usuarioJSON = JSON.stringify(usuarioEncontrado);
+      sessionStorage.setItem("usuario", usuarioJSON);
+      window.location.href = "bemvindo.html";
       //inserir aqui em JSon e inserir em sessionStorage
       //a opcao de cima TEM O <3 da prof
       //ou criar tres atributos na sessionStorage
     } else {
+      alert("Email ou senha incorretos!");
       //alert ou igual do campo obrigatorio
       event.preventDefault();
     }
   });
-});
 
 //// ATIVIDADE
 
